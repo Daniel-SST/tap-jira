@@ -1760,6 +1760,8 @@ class IssueStream(JiraStream):
         else:
             params.pop("jql")  # drop if there's no query
 
+        self.logger.info("QUERY PARAMS: %s", params)
+
         return params
 
     def get_child_context(self, record: dict, context: Optional[dict]) -> dict:
