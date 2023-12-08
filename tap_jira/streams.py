@@ -1797,7 +1797,7 @@ class IssueStream(JiraStream):
             if row["fields"].get(key_set_default) is None:
                 row["fields"][key_set_default] = []
 
-        # move these fields, so they can be used as replication keys
+        # move these fields so they can be used as replication keys
         row["updated"] = row["fields"]["updated"]
         row["created"] = row["fields"]["created"]
 
@@ -3196,7 +3196,7 @@ class IssueComments(JiraStream):
 
     ignore_parent_replication_keys = True
 
-    path = "/issue/{issue_id}/comment"
+    path = "/issue/{issue_id}/comment?expand=renderedBody"
 
     primary_keys = ["id"]
 
@@ -3221,6 +3221,7 @@ class IssueComments(JiraStream):
         ),
         Property("created", DateTimeType),
         Property("updated", DateTimeType),
+        Property("renderedBody", StringType),
         Property(
             "body",
             _generate_deep_adf_schema_estimation(depth=15),
