@@ -3237,6 +3237,7 @@ class IssueComments(JiraStream):
                 Property("active", BooleanType),
             ),
         ),
+        Property("jsdPublic", BooleanType),
     ).to_dict()
 
     def post_process(self, row: dict, context: dict) -> dict:
